@@ -10,8 +10,9 @@
         <div class="card">
             <div class="card-body">
                 <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                <a href="{{ url('backend/noticias') }}" class="btn btn-primary">Noticias</a>
+                <a href="{{ url('backend/noticias') }}" class="btn btn-primary">Noticias backend</a>
                 <a href="{{ url('backend/noticias/crear') }}" class="btn btn-primary">Crear noticia</a>
+                <a href="{{ url('/noticias/') }}" class="btn btn-primary">Noticias</a>
             </div>
         </div>
     </div>

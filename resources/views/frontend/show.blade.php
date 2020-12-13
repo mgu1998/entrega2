@@ -1,4 +1,4 @@
-@extends('backend.base')
+@extends('frontend.app')
 
 @section('postscript')
 <script src="{{ url('assets/backend/js/script.js?r=' . uniqid()) }}"></script>
@@ -6,20 +6,15 @@
 
 @section('content')
 
-<form id="formDelete" action="{{ url('backend/noticias/' . $noticia->noticia_id) }}" method="post">
-    @method('DELETE')
-    @csrf
-</form>
 
 
-<div class="row">
+<div class="container"><div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                <a href="{{ url('backend/noticias') }}" class="btn btn-primary">Noticias</a>
+                <a href="{{ url('/noticias') }}" class="btn btn-primary">Noticias</a>
                 <a href="{{ url('backend/noticias/crear') }}" class="btn btn-primary">Crear Noticias</a>
-                <a href="#" data-table="noticia" data-id="{{ $noticia->noticia_id }}" data-name="{{ $noticia->titulo }}" class="btn btn-danger" id="enlaceBorrar">Borrar noticia</a>
 
                 
              </div>
@@ -37,39 +32,35 @@
 @endif
 <div class="card-body">
     <div class="form-group">
-        <label>Titulo</label>
-        {{ $noticia->titulo }}
+       <h1>{{ $noticia->titulo }}</h1> 
     </div>
-    <div class="form-group">
-        <label>Texto</label>
-        {{ $noticia->texto }}
-    </div>
-    <div class="form-group">
-        <label>Imagen</label>
-        <img src="{{ $noticia->imagen }}"></img>
-    </div>
-    <div class="form-group">
+        <div class="form-group mt-4">
         <label>Fecha</label>
         {{ $noticia->fecha }} 
     </div>
     <div class="form-group">
         <label>Autor</label>
-        <a href="{{ url('backend/noticias/autor/' . $noticia->autor_id) }}" >{!! $noticia['autor_id']!!}</a>
+        <a href="{{ url('/noticias/autor/' . $noticia->autor_id) }}" >{!! $noticia['autor_id']!!}</a>
     </div>
     
+    <div class="form-group mt-4" >
+    <p> {{ $noticia->texto }}</p>       
+    </div>
+    <div class="form-group mt-4" >
+        <img src="{{ $noticia->imagen }}"  width="100%"></img>
+    </div>
 
-    
-    
    <form id="formulario" method="post" action="{{URL::to('/backend/comentarios/crear')}}">
 
         @csrf
         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-       
       </div> 
-    
     <div class="card-body">
         
-<h2>Crear comentario</h2>
+<div id="comentario">
+    
+    
+    <h2>Crear comentario</h2>
      <br/>
     <div class="form-group">
         <label>Tu comentario</label>
@@ -96,7 +87,6 @@
         @foreach($comentarios as $comentario)
         <div class="card">
             <div class="card-body">
-            
         <p>{!! $comentario['texto']!!}</p>
         <p>De: {!! $comentario['correo']!!}</p>
         <p>Fecha del comentario: {!! $comentario['fecha']!!}</p>
@@ -104,5 +94,10 @@
         </div>
         <hr></hr>
         @endforeach
-    </div>
+    </div></div>
+    
+    
+    
+    
+</div>
 @endsection

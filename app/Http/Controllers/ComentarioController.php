@@ -19,6 +19,19 @@ public function store(Request $request)
      
         $noticias=noticia::all();
         comentario::create($data);
-        return view('backend.noticias.index')->with(['noticias' => $noticias]);
+        return view('frontend.index')->with(['noticias' => $noticias]);
     }
-}
+
+            
+    public function destroy($comentario_id)
+    {
+         $comentario = comentario::find($comentario_id);        
+  
+        try {
+                    $result = $comentario->delete();
+                } catch(\Exception $e) {
+                    $result = 0;
+                }
+        return redirect('backend/noticias');
+            }
+    }

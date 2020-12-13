@@ -44,3 +44,12 @@ Route::post('backend/comentarios/crear', 'App\Http\Controllers\ComentarioControl
 Route::get('backend/noticias/autor/{autor_id}', 'App\Http\Controllers\NoticiaController@index_autor');
 Route::delete('backend/noticias/{noticia_id}', 'App\Http\Controllers\NoticiaController@destroy');
 
+Route::get('/noticias/', 'App\Http\Controllers\NoticiaController@indexfront')->name('noticias.index');
+Route::get('/noticias/{noticia_id}', 'App\Http\Controllers\NoticiaController@viewfront');
+Route::get('/noticias/crear-noticia', 'App\Http\Controllers\NoticiaController@indexfront');
+Route::post('/noticias/crear', 'App\Http\Controllers\NoticiaController@storefront');
+Route::get('/noticias/autor/{autor_id}', 'App\Http\Controllers\NoticiaController@index_autor_front');
+Route::post('backend/noticias/comentarios/{comentario_id}', 'App\Http\Controllers\ComentarioController@destroy');
+
+
+
